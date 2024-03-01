@@ -44,7 +44,7 @@ export class AccessoryController {
 
   @Get('/image/:path')
   download(@Param('path') path: string, @Response() response) {
-    return response.sendFile(path, { root: './db_images/product' });
+    return response.sendFile(path, { root: './db_images/accessory' });
   }
 
   @Get('/:id')

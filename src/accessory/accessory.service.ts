@@ -70,16 +70,16 @@ export class AccessoryService {
     if (dto.name) toUpdate.name = dto.name;
     if (dto.description) toUpdate.description = dto.description;
     if (dto.price) toUpdate.price = dto.price;
-    // if (dto.id) {
-    //   const category = await this.categoryRepository.findOne({
-    //     where: { id: dto.id },
-    //     relations: ['products'],
-    //   });
-    //   toUpdate.category = category;
-    // }
+    if (dto.id) {
+      const category = await this.categoryRepository.findOne({
+        where: { id: dto.id },
+        relations: ['accessory'],
+      });
+      toUpdate.category = category;
+    }
     if (image) {
       if (toUpdate.image !== image.filename) {
-        fs.unlink(`db_images/product/${toUpdate.image}`, (err) => {
+        fs.unlink(`db_images/accessory/${toUpdate.image}`, (err) => {
           if (err) {
             console.error(err);
           }

@@ -8,6 +8,8 @@ import {
 } from 'typeorm';
 
 import { CategoryEntity } from 'src/category/entities/category.entity';
+import { IsNumber } from 'class-validator';
+import { Type } from 'class-transformer';
 
 @Entity('product')
 export class ProductEntity {
@@ -61,6 +63,10 @@ export class ProductEntity {
 
   @Column()
   price: number;
+
+  @IsNumber()
+  @Type(() => Number)
+  categoryId: number;
 
   @ManyToOne(() => CategoryEntity, (category) => category.products, {
     eager: true,
