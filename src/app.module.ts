@@ -4,9 +4,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { CategoryModule } from './category/category.module';
 import { getPostgresConfig } from './configs/postgres.config';
-import { PromoModule } from './promo/promo.module';
 import { ProductModule } from './product/product.module';
 import { AccessoryModule } from './accessory/accessory.module';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -19,10 +20,11 @@ import { AccessoryModule } from './accessory/accessory.module';
       useFactory: getPostgresConfig,
     }),
     CategoryModule,
-    PromoModule,
     CategoryModule,
     ProductModule,
     AccessoryModule,
+    AuthModule,
+    UsersModule,
   ],
   controllers: [],
   providers: [],
