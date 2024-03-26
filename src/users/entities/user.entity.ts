@@ -17,9 +17,9 @@ export class UserEntity {
   @Column()
   password: string;
 
-  @CreateDateColumn({ type: 'timestamp' })
+  @CreateDateColumn({ type: 'timestamp' }) // Change type to 'timestamp'
   createdAt: Date;
 
-  @UpdateDateColumn({ type: 'timestamp' })
+  @UpdateDateColumn({ type: 'timestamp' }) // Change type to 'timestamp'
   updatedAt: Date;
 }

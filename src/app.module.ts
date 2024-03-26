@@ -8,6 +8,8 @@ import { ProductModule } from './product/product.module';
 import { AccessoryModule } from './accessory/accessory.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
+import { CartModule } from './cart/cart.module';
+import { OrderModule } from './order/order.module';
 
 @Module({
   imports: [
@@ -19,12 +21,20 @@ import { UsersModule } from './users/users.module';
       inject: [ConfigService],
       useFactory: getPostgresConfig,
     }),
+    // TypeOrmModule.forRoot({
+    //   type: 'postgres',
+    //   database: 'tmp01',
+    //   entities: [__dirname + '/**/*.entity{.ts,.js}'],
+    //   synchronize: true,
+    // }),
     CategoryModule,
     CategoryModule,
     ProductModule,
     AccessoryModule,
     AuthModule,
     UsersModule,
+    CartModule,
+    OrderModule,
   ],
   controllers: [],
   providers: [],
