@@ -62,6 +62,10 @@ export class ProductService {
     return this.productRepository.findOneBy({ id });
   }
 
+  async getProductById(id: number) {
+    return await this.productRepository.findOneBy({ id: id });
+  }
+
   async findByCategoryId(categoryId: number): Promise<ProductEntity[]> {
     return this.productRepository
       .createQueryBuilder('product')

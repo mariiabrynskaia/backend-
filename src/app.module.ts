@@ -7,9 +7,9 @@ import { getPostgresConfig } from './configs/postgres.config';
 import { ProductModule } from './product/product.module';
 import { AccessoryModule } from './accessory/accessory.module';
 import { AuthModule } from './auth/auth.module';
-import { UsersModule } from './users/users.module';
 import { CartModule } from './cart/cart.module';
 import { OrderModule } from './order/order.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -21,20 +21,20 @@ import { OrderModule } from './order/order.module';
       inject: [ConfigService],
       useFactory: getPostgresConfig,
     }),
-    // TypeOrmModule.forRoot({
-    //   type: 'postgres',
-    //   database: 'tmp01',
-    //   entities: [__dirname + '/**/*.entity{.ts,.js}'],
-    //   synchronize: true,
-    // }),
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      database: 'tmp01',
+      entities: [__dirname + '/**/*.entity{.ts,.js}'],
+      synchronize: true,
+    }),
     CategoryModule,
     CategoryModule,
     ProductModule,
     AccessoryModule,
     AuthModule,
-    UsersModule,
     CartModule,
     OrderModule,
+    UserModule,
   ],
   controllers: [],
   providers: [],

@@ -5,7 +5,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
-import { UsersModule } from 'src/users/users.module';
+import { UserModule } from 'src/user/user.module';
 import { LocalStrategy } from './strategies/local.strategy';
 import { JwtStrategy } from './strategies/jwt.strategy';
 
@@ -22,7 +22,7 @@ import { JwtStrategy } from './strategies/jwt.strategy';
         };
       },
     }),
-    UsersModule,
+    UserModule,
     PassportModule,
   ],
   providers: [AuthService, LocalStrategy, JwtStrategy],
