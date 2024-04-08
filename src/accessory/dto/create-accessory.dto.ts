@@ -1,6 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
-import { IsString, IsNumber, IsNotEmpty, IsDecimal } from 'class-validator';
+import {
+  IsString,
+  IsNumber,
+  IsNotEmpty,
+  IsDecimal,
+  IsNumberString,
+} from 'class-validator';
 
 export class CreateAccessoryDto {
   @IsNumber()

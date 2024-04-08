@@ -29,25 +29,25 @@ export class ProductEntity {
   distance: number;
 
   @Column()
-  battery: number;
+  battery: string;
 
-  @Column()
+  @Column({ type: 'float', default: 0 })
   weight: number;
 
   @Column()
   payload: string;
 
-  @Column()
+  @Column({ type: 'float', default: 0 })
   charging_time: number;
 
   @Column()
   number_of_batteries: string;
 
   @Column()
-  motor_power: number;
+  motor_power: string;
 
   @Column()
-  power_output: number;
+  power_output: string;
 
   @Column()
   incline: number;
@@ -61,7 +61,7 @@ export class ProductEntity {
   @Column()
   atmosphere_light: string;
 
-  @Column()
+  @Column({ type: 'float', default: 0 })
   price: number;
 
   @IsNumber()

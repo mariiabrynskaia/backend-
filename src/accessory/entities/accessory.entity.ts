@@ -1,4 +1,5 @@
 import {
+  Any,
   Column,
   Entity,
   JoinColumn,
@@ -7,8 +8,6 @@ import {
 } from 'typeorm';
 
 import { CategoryEntity } from 'src/category/entities/category.entity';
-import { IsNumber } from 'class-validator';
-import { Type } from 'class-transformer';
 
 @Entity('accessory')
 export class AccessoryEntity {
@@ -24,12 +23,8 @@ export class AccessoryEntity {
   @Column()
   description: string;
 
-  @Column()
+  @Column({ type: 'float', default: 0 })
   price: number;
-
-  @IsNumber()
-  @Type(() => Number)
-  categoryId: number;
 
   @ManyToOne(() => CategoryEntity, (category) => category.accessory, {
     eager: true,

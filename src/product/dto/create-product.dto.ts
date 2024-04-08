@@ -26,9 +26,8 @@ export class CreateProductDto {
   @Type(() => Number)
   distance: number;
 
-  @IsNumber()
-  @Type(() => Number)
-  battery: number;
+  @IsString()
+  battery: string = 'Аккумулятор';
 
   @IsNumber()
   @Type(() => Number)
@@ -44,13 +43,11 @@ export class CreateProductDto {
   @IsString()
   number_of_batteries: string = 'Количество батарей в комплекте';
 
-  @IsNumber()
-  @Type(() => Number)
-  motor_power: number;
+  @IsString()
+  motor_power: string = 'Мощность мотора';
 
-  @IsNumber()
-  @Type(() => Number)
-  power_output: number;
+  @IsString()
+  power_output: string = 'Power output';
 
   @IsNumber()
   @Type(() => Number)
