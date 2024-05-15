@@ -6,15 +6,17 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UserEntity } from './entities/user.entity';
 import { UpdateUserDto } from './dto/update-user.dto';
 import * as bcrypt from 'bcrypt';
+import { CartService } from 'src/cart/cart.service';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(UserEntity)
     private repository: Repository<UserEntity>,
+    private readonly cartService: CartService,
   ) {}
 
-  async create(dto: CreateUserDto) {
+  async create(dto: CreateUserDto): Promise<UserEntity> {
     const existingUser = await this.findByUsername(dto.username);
 
     if (existingUser) {
@@ -22,6 +24,14 @@ export class UsersService {
         `Пользователь ${dto.username} уже существует`,
       );
     }
+
+    const user = await this.repository.save(dto);
+    const cart = await this.cartService.create(user);
+    user.cart = cart;
+
+    await this.repository.save(user);
+
+    return user;
 
     return this.repository.save(dto);
   }

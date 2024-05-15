@@ -1,8 +1,11 @@
+import { Cart } from 'src/cart/entities/cart.entity';
+import { Order } from 'src/order/entities/order.entity';
 import { Role } from 'src/role/role.enum';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -26,4 +29,10 @@ export class UserEntity {
 
   @Column({ type: 'enum', enum: Role, default: Role.User })
   role: Role;
+
+  @OneToOne(() => Order, (order) => order.user)
+  order: Order;
+
+  @OneToOne(() => Cart, (cart) => cart.user)
+  cart: Cart;
 }
