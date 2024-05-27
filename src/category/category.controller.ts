@@ -25,7 +25,7 @@ export class CategoryController {
 
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.Admin)
+  @Roles(Role.admin)
   @Post()
   create(@Body() dto: CreateCategoryDto) {
     return this.categoryService.create(dto);
@@ -47,7 +47,7 @@ export class CategoryController {
 
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.Admin)
+  @Roles(Role.admin)
   @Patch(':id')
   update(@Param('id') id: string, @Body() dto: UpdateCategoryDto) {
     return this.categoryService.update(+id, dto);
@@ -55,7 +55,7 @@ export class CategoryController {
 
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.Admin)
+  @Roles(Role.admin)
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.categoryService.delete(+id);

@@ -16,55 +16,55 @@ export class CreateProductDto {
   image: Express.Multer.File;
 
   @IsString()
-  name: string = 'Наименование товара';
+  name: string = 'Наименование';
 
   @IsNumber()
   @Type(() => Number)
-  speed: number;
+  speed: number = 20;
 
   @IsNumber()
   @Type(() => Number)
-  distance: number;
+  distance: number = 22;
 
   @IsString()
-  battery: string = 'Аккумулятор';
+  battery: string = '5100 mAh';
 
   @IsNumber()
   @Type(() => Number)
-  weight: number;
+  weight: number = 13.5;
 
   @IsString()
-  payload: string = 'Вместимость по весу';
+  payload: string = '25 кг - 100 кг';
 
   @IsNumber()
   @Type(() => Number)
-  charging_time: number;
+  charging_time: number = 3.5;
 
   @IsString()
-  number_of_batteries: string = 'Количество батарей в комплекте';
+  number_of_batteries: string = '1 встроенная';
 
   @IsString()
-  motor_power: string = 'Мощность мотора';
+  motor_power: string = 'Номинальная 300W';
 
   @IsString()
-  power_output: string = 'Power output';
+  power_output: string = '71W (0.071kW)';
 
   @IsNumber()
   @Type(() => Number)
-  incline: number;
+  incline: number = 15;
 
   @IsString()
-  amortization: string = 'Амортизация';
+  amortization: string = 'Передняя';
 
   @IsString()
-  safety_light: string = 'Сигнальные огни';
+  safety_light: string = 'Задний LED-фонарь';
 
   @IsString()
-  atmosphere_light: string = 'Декоративные огни';
+  atmosphere_light: string = '---';
 
   @IsNumber()
   @Type(() => Number)
-  price: number;
+  price: number = 34900;
 
   @IsNumber()
   @Type(() => Number)

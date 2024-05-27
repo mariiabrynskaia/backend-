@@ -68,4 +68,14 @@ export class UsersService {
   async delete(id: number): Promise<DeleteResult> {
     return this.repository.delete(id);
   }
+
+  async findLatestUser(): Promise<UserEntity> {
+    const latestUsers = await this.repository.find({
+      order: {
+        createdAt: 'DESC',
+      },
+      take: 1,
+    });
+    return latestUsers.length ? latestUsers[0] : null;
+  }
 }

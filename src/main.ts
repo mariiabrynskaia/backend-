@@ -9,6 +9,9 @@ async function bootstrap() {
   app.setGlobalPrefix('api');
   app.useGlobalPipes(new ValidationPipe());
 
+  // Enable CORS
+  app.enableCors(); // Add this line
+
   const config = new DocumentBuilder()
     .setTitle('School X - OpenAPI 3.0')
     .setDescription(

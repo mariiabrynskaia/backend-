@@ -27,7 +27,7 @@ export class UserEntity {
   @UpdateDateColumn({ type: 'timestamp' })
   updatedAt: Date;
 
-  @Column({ type: 'enum', enum: Role, default: Role.User })
+  @Column({ type: 'enum', enum: Role, default: Role.user })
   role: Role;
 
   @OneToOne(() => Order, (order) => order.user)

@@ -35,6 +35,11 @@ export class AuthService {
       throw new BadRequestException('Запрещено создавать новых пользователей');
     }
 
+    const existingUser = await this.usersService.findByUsername(dto.username);
+    if (existingUser) {
+      throw new BadRequestException('User with such a name already exists');
+    }
+
     try {
       const userData = await this.usersService.create(dto);
 
@@ -42,12 +47,14 @@ export class AuthService {
         token: this.jwtService.sign({ id: userData.id }),
       };
     } catch (err) {
-      // throw new ForbiddenException('Ошибка при регистрации');
       throw new ForbiddenException(err.message);
     }
   }
 
   async login(user: UserEntity) {
+    if (!user) {
+      throw new BadRequestException("The user isn't found. Register first.");
+    }
     return {
       token: this.jwtService.sign({ id: user.id }),
     };

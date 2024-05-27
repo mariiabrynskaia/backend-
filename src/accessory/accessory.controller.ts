@@ -33,7 +33,7 @@ export class AccessoryController {
   @Post()
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.Admin)
+  @Roles(Role.admin)
   @ApiConsumes('multipart/form-data')
   @UseInterceptors(FileInterceptor('image', { storage: fileStorage }))
   create(
@@ -43,7 +43,7 @@ export class AccessoryController {
     return this.accessoryService.create(dto, image);
   }
 
-  @Get()
+  @Get('categoryId')
   // @ApiBearerAuth()
   // @UseGuards(JwtAuthGuard)
   @ApiQuery({ name: 'categoryId', required: false })
@@ -69,7 +69,7 @@ export class AccessoryController {
   @Patch(':id')
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.Admin)
+  @Roles(Role.admin)
   @ApiConsumes('multipart/form-data')
   @UseInterceptors(FileInterceptor('image', { storage: fileStorage }))
   update(
@@ -83,7 +83,7 @@ export class AccessoryController {
   @Delete(':id')
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.Admin)
+  @Roles(Role.admin)
   delete(@Param('id') id: string): Promise<DeleteResult> {
     return this.accessoryService.delete(+id);
   }

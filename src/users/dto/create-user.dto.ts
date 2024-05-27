@@ -13,5 +13,5 @@ export class CreateUserDto {
 
   @ApiHideProperty()
   @IsNotEmpty()
-  role: Role = Role.User;
+  role: Role = Role.user;
 }

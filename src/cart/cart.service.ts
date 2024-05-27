@@ -49,16 +49,25 @@ export class CartService {
       );
     }
 
-    const userCart = await this.cartRepository.findOne({
-      relations: {
-        CartItems: {
-          product: true,
-        },
-      },
+    let userCart = await this.cartRepository.findOne({
+      relations: ['CartItems', 'CartItems.product'],
       where: {
-        user: user.id,
+        user: { id: user.id },
       },
     });
+
+    // If the cart does not exist, create a new one
+    if (!userCart) {
+      userCart = new Cart();
+      userCart.user = user;
+      userCart.CartItems = [];
+      await this.cartRepository.save(userCart);
+    }
+
+    // Initialize CartItems if it's null
+    if (!userCart.CartItems) {
+      userCart.CartItems = [];
+    }
 
     if (userCart.CartItems.some((x) => x.product.id == product.id)) {
       const cItem = userCart.CartItems.find((x) => x.product.id == product.id);

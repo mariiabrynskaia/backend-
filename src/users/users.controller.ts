@@ -9,6 +9,7 @@ import {
   Param,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { UserEntity } from './entities/user.entity';
 
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -22,29 +23,47 @@ import { RolesGuard } from 'src/auth/guards/role.guard';
 
 @Controller('users')
 @ApiTags('users')
-@ApiBearerAuth()
-@UseGuards(JwtAuthGuard, RolesGuard)
-@Roles(Role.Admin)
+// @ApiBearerAuth()
+// @UseGuards(JwtAuthGuard, RolesGuard)
+// @Roles(Role.admin)
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
+  // @UseGuards(JwtAuthGuard)
   @Get('me')
-  getMe(@UserId() id: number) {
-    return this.usersService.findById(id);
+  async getLatestUser() {
+    return this.usersService.findLatestUser();
   }
 
   @Get()
-  @Roles(Role.Admin)
+  @ApiBearerAuth()
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(Role.admin)
   findAll() {
     return this.usersService.findAll();
   }
 
+  @Get('username')
+  @ApiBearerAuth()
+  @UseGuards(JwtAuthGuard)
+  async getUserByUsername(
+    @Param('username') username: string,
+  ): Promise<UserEntity | undefined> {
+    return this.usersService.findByUsername(username);
+  }
+
   @Patch(':id')
+  @ApiBearerAuth()
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(Role.admin)
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.usersService.update(+id, updateUserDto);
   }
 
   @Delete(':id')
+  @ApiBearerAuth()
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(Role.admin)
   remove(@Param('id') id: string): Promise<DeleteResult> {
     return this.usersService.delete(+id);
   }
