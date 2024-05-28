@@ -28,20 +28,20 @@ export class CartController {
     return await this.BaketService.CreateCartItemDto(dto, req.user);
   }
 
-  @Get()
-  get(@Request() req: any) {
-    return this.BaketService.get(req.user.id);
-  }
-
-  // @Get('all')
-  // findAll(@Request() req: any) {
-  //   return this.BaketService.findAll(req.user);
+  // @Get()
+  // get(@Request() req: any) {
+  //   return this.BaketService.get(req.user.id);
   // }
 
-  @Get(':id')
-  findOne(@Param('id') id: string, @Request() req: any) {
-    return this.BaketService.findOne(+id, req.user);
-  }
+  // // @Get('all')
+  // // findAll(@Request() req: any) {
+  // //   return this.BaketService.findAll(req.user);
+  // // }
+
+  // @Get(':id')
+  // findOne(@Param('id') id: string, @Request() req: any) {
+  //   return this.BaketService.findOne(+id, req.user);
+  // }
 
   @Patch()
   async update(@Body() dto: UpdateCartDto, @Request() req: any) {

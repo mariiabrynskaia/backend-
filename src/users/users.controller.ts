@@ -29,7 +29,7 @@ import { RolesGuard } from 'src/auth/guards/role.guard';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Get('me')
   async getLatestUser() {
     return this.usersService.findLatestUser();
